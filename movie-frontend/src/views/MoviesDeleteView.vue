@@ -3,8 +3,8 @@
     <h1>Edit Movie</h1>
     <form @submit.prevent="updateMovie" class="form">
       <div class="form-field">
-        <label for="name">Name:</label>
-        <input disabled id="name" v-model="movie.name" />
+        <label for="title">Title:</label>
+        <input disabled id="title" v-model="movie.title" />
       </div>
 
       <div class="form-field">
@@ -60,7 +60,7 @@ const updateMovie = async () => {
 
   if (!response.ok) throw new Error("Failed to update movie");
 
-  router.push({ name: "movies" });
+  router.push({ title: "movies" });
 };
 </script>
   

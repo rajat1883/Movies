@@ -1,21 +1,23 @@
 <template>
-  <h1>MOVIES</h1>
+  <div>
+    <h1>MOVIES</h1>
 
-  <input v-model="searchText" @input="onSearch" placeholder="Search..." />
+    <input v-model="searchText" @input="onSearch" placeholder="Search..." />
 
-  <br />
-  <br />
+    <br />
+    <br />
 
-  <ag-grid-vue
-    class="ag-theme-alpine"
-    :gridOptions="gridOptions"
-    :rowData="movies"
-    @grid-ready="onGridReady"
-  />
+    <ag-grid-vue
+      class="ag-theme-alpine"
+      :gridOptions="gridOptions"
+      :rowData="movies"
+      @grid-ready="onGridReady"
+    />
 
-  <br />
+    <br />
 
-  <button class="btn green-btn" @click="addMovie">Add</button>
+    <button class="btn green-btn" @click="addMovie">Add</button>
+  </div>
 </template>
 
 <script setup>
@@ -49,8 +51,8 @@ const columnDefs = [
     cellStyle: { "text-align": "left" },
   },
   {
-    headerName: "Name",
-    field: "name",
+    headerName: "Title",
+    field: "Title",
     flex: 1,
     cellStyle: { "text-align": "left" },
     sortable: true,
