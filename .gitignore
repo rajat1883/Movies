@@ -1,1 +1,4 @@
 movie-frontend/node_modules
+/target
+.idea/workspace.xml
+.idea/vcs.xml
