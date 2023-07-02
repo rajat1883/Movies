@@ -42,7 +42,7 @@ const movie = ref({});
 
 onMounted(async () => {
   const response = await fetch(
-    `http://localhost:3000/movies/${route.params.id}`
+    `http://localhost:4040/api/movies/${route.params.id}`
   );
   if (!response.ok) throw new Error("Failed to load movie data");
   movie.value = await response.json();
@@ -50,7 +50,7 @@ onMounted(async () => {
 
 const updateMovie = async () => {
   const response = await fetch(
-    `http://localhost:3000/movies/${movie.value.id}`,
+    `http://localhost:4040/api/movies/${movie.value.id}`,
     {
       method: "PUT",
       headers: { "Content-Type": "application/json" },

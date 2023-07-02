@@ -32,7 +32,7 @@ const searchText = ref("");
 
 const loadMovies = async () => {
   try {
-    const response = await fetch("http://localhost:3000/movies");
+    const response = await fetch("http://localhost:4040/api/movies");
     if (!response.ok) throw Error("No data available");
     movies.value = await response.json();
   } catch (err) {
@@ -52,7 +52,7 @@ const columnDefs = [
   },
   {
     headerName: "Title",
-    field: "Title",
+    field: "title",
     flex: 1,
     cellStyle: { "text-align": "left" },
     sortable: true,

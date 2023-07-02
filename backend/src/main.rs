@@ -2,6 +2,7 @@ mod api;
 mod models;
 mod repository;
 
+use actix_cors::Cors;
 use actix_web::{get, web, App, HttpResponse, Responder, Result, HttpServer};
 use serde::{Serialize};
 
@@ -29,14 +30,17 @@ async fn not_found() -> Result<HttpResponse> {
 async fn main() -> std::io::Result<()> {
     let movie_db = repository::database::Database::new();
     let app_data = web::Data::new(movie_db);
-    return HttpServer::new(move || App::new()
-        .app_data(app_data.clone())
-        .configure(api::api::config)
-        .service(health_check)
-        .default_service(web::route().to(not_found))
-        .wrap(actix_web::middleware::Logger::default())
-    )
-        .bind(("127.0.0.1", 8080))?
+    return HttpServer::new(move || {
+        let cors = Cors::permissive();
+        App::new()
+            .wrap(cors)
+            .app_data(app_data.clone())
+            .configure(api::api::config)
+            .service(health_check)
+            .default_service(web::route().to(not_found))
+            .wrap(actix_web::middleware::Logger::default())
+    })
+        .bind(("127.0.0.1", 4040))?
         .run()
         .await;
 }

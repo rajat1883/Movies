@@ -40,7 +40,7 @@ const movie = ref({});
 
 const updateMovie = async () => {
   movie.value.id = 0;
-  const response = await fetch(`http://localhost:3000/movies`, {
+  const response = await fetch(`http://localhost:4040/api/movies`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(movie.value),
